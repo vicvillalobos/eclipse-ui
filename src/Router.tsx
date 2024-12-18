@@ -1,13 +1,25 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  BrowserRouter,
+  createBrowserRouter,
+  Route,
+  RouterProvider,
+  Routes,
+} from 'react-router-dom';
+import { AppShell } from './layouts/shell/AppShell';
 import { HomePage } from './pages/Home.page';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <HomePage />,
-  },
-]);
+const AppRoutes = () => (
+  <Routes>
+    <Route path="/" element={<AppShell />}>
+      <Route index element={<HomePage />} path="" />
+    </Route>
+  </Routes>
+);
 
 export function Router() {
-  return <RouterProvider router={router} />;
+  return (
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  );
 }
